@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  documind-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: documind_api
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-1.5-flash}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-models/text-embedding-004}
+      - APP_ENV=production
+      - DEBUG=False
+      - CHROMA_PERSIST_DIR=/app/data/chroma
+      - DATABASE_URL=sqlite:////app/data/documind.db
+      - UPLOAD_DIR=/app/data/documents
+    volumes:
+      - documind_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  documind_data:
+    driver: local

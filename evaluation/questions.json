@@ -1,0 +1,20 @@
+[
+  {
+    "id": "q1",
+    "question": "What is the primary purpose of the DocuMind platform?",
+    "expected_keywords": ["document intelligence", "rag", "retrieval", "gemini", "analysis"],
+    "expected_source": "sample_overview.md"
+  },
+  {
+    "id": "q2",
+    "question": "How does DocuMind handle chunking and document ingestion?",
+    "expected_keywords": ["chunk", "overlap", "recursive", "embeddings", "vector"],
+    "expected_source": "architecture.md"
+  },
+  {
+    "id": "q3",
+    "question": "Which LLM model and vector store are used in the platform?",
+    "expected_keywords": ["gemini", "chromadb", "sqlite", "vector"],
+    "expected_source": "config.md"
+  }
+]
